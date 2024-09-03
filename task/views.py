@@ -30,7 +30,7 @@ class TaskView(APIView):
     def post(self, request):
         try:
             user = request.user
-            data = request.data
+            data = request.data.copy()
             data['user'] = user.id
             serializer = TaskSerializer(data=data, context={'request': request})
             if serializer.is_valid():
