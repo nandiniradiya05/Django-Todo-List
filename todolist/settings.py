@@ -28,7 +28,7 @@ DEBUG = True
 AUTH_USER_MODEL = 'task.User'
 
 
-ALLOWED_HOSTS = ['localhost', 'flutter.mycro.news']
+ALLOWED_HOSTS = ['*', 'localhost']
 
 
 # Application definition
@@ -58,10 +58,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = (
-    '*',
-)
-CSRF_TRUSTED_ORIGINS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
