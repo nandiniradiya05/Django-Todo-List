@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Others' Tasks</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <h2>To-do app</h2>
+                <i class="fa-solid fa-book-bookmark"></i>
+            </div>
+            <div class="auth-buttons">
+                <button id="logout-btn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="todo-app">
+            <div class="app-title">
+                <h2>Tasks by Other Users</h2>
+                <a href="todo.html" class="link-text" id="back-btn">Back to My Tasks </a>
+            </div>
+            <ul id="list-container-others">
+                <!-- Others' tasks will be dynamically inserted here -->
+            </ul>
+        </div>
+    </div>
+    <script src="others-tasks.js"></script> <!-- Link to the JavaScript file for others' tasks -->
+</body>
+</html>

@@ -13,7 +13,7 @@ class TaskView(APIView):
 
     def get(self, request):
         try:
-            user_tasks = Task.objects.filter(is_deleted=False,user=request.user)
+            user_tasks = Task.objects.filter(is_deleted=False,user=request.user).order_by('-created_at')
             serializer = TaskSerializer(user_tasks, many=True)
             return Response({
                 "status": 200,
@@ -58,7 +58,7 @@ class TaskView(APIView):
             data = request.data
             data['user'] = user.id
             task = get_object_or_404(Task, id=task_id)
-            serializer = TaskSerializer(instance=task, data=request.data, context={'request': request})
+            serializer = TaskSerializer(instance=task, data=request.data, context={'request': request}, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response({
@@ -75,6 +75,29 @@ class TaskView(APIView):
             return Response({
                 "status": 500,
                 "message": "An error occurred while updating the task.",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+    def delete(self, request, task_id):
+        try:
+            user = request.user
+            data = request.data
+            data['user'] = user.id
+            task = get_object_or_404(Task, id=task_id)
+            task.is_deleted = True
+            task.save()
+            
+            serializer = TaskSerializer(task)
+            return Response({
+                "status": 200,
+                "message": "Task deleted successfully",
+                "data": serializer.data
+            }, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            return Response({
+                "status": 500,
+                "message": "An error occurred while deleting the task.",
                 "error": str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

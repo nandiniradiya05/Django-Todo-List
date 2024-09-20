@@ -21,14 +21,15 @@
     <div class="container">
         <div class="todo-app">
             <div class="app-title">
-                <h2>To-do app</h2>
+                <h2>My Tasks</h2>
                 <i class="fa-solid fa-book-bookmark"></i>
-                <h3 class="link-text">View others' tasks</h3>
+                <a href="others-task.html" class="link-text">View others' tasks</a>
             </div>
             <div class="row">
-                <input type="text" id="input-box" placeholder="add your tasks">
+                <input type="text" id="input-box" placeholder="add your tasks"><br>
                 <button id="add-task">Add</button>
             </div>
+            <p id="error-message" class="error-message"></p>
             <ul id="list-container">
             </ul>
         </div>
